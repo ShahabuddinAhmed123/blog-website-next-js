@@ -1,4 +1,6 @@
 import { createClient } from "contentful";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
@@ -28,6 +30,7 @@ export async function getStaticProps({ params }) {
   });
   return {
     props: { blog: items[0] },
+    revalidate:1,
   };
 }
 
@@ -39,30 +42,42 @@ export default function RecepieDetails({ blog }) {
     publishedDate,
     author,
     shortDescription,
-    title,
-    content,
+    descriptionOne,
+    descriptionTwo,
+    content
   } = blog.fields;
+  // console.log("content",content)
   return (
     <div className=" w-full h-full">
-      <div className="w-full flex h-[500px] mx-auto border border-black rounded-3xl bg-[#d4d4d4]">
-        <div className="w-1/2 p-10 flex flex-col justify-center text-base">
-            <div className="flex w-full items-center justify-between">
-            <div className="flex items-center gap-3">
-                <img className="h-[30px]" src={author.fields.avatar.fields.file.url}/>
-            <p>{author.fields.name}</p>
+      <div className="w-full flex h-[500px] mx-auto rounded-tl-3xl rounded-br-3xl bg-[#e9e7e7] shadow-xl shadow-stone-400 max-[990px]:flex-col max-[990px]:h-auto">
+        <div className="w-1/2 p-10 flex flex-col justify-center text-base rounded-tl-3xl max-[990px]:w-full max-[440px]:p-3 max-sm:text-sm">
+          <div className="flex w-full items-center justify-between max-[440px]:flex-col max-[440px]:items-end">
+            <div className="flex items-center gap-3 max-[440px]:w-full max-[440px]: justify-between">
+              <img
+                className="h-[30px]"
+                src={author.fields.avatar.fields.file.url}
+              />
+              <p>{author.fields.name}</p>
             </div>
-                <p>{publishedDate}</p>
-            </div>
-            <h2 className="text-3xl my-4">{internalName}</h2>
-            <p className="text-[#777]">{shortDescription}</p>
+            <p>{publishedDate}</p>
+          </div>
+          <h2 className="text-3xl my-4 max-sm:text-xl">{internalName}</h2>
+          <p className="text-[#777]">{shortDescription}</p>
+          <div className="text-base max-sm:text-sm max-sm:my-3">
+            <p>{descriptionOne}</p>
+          </div>
         </div>
-        <img className="blog-image h-full rounded-tr-3xl rounded-br-3xl" src={featuredImage.fields.file.url} />
+        <img
+          className=" max-[990px]:h-auto rounded-br-3xl"
+          src={featuredImage.fields.file.url}
+        />
       </div>
-      {/* <div className="">
-        <p className="text-3xl">
-            {content?.content?.content?.value}
-        </p>
-      </div> */}
+        <div className="text-lg p-3 my-3 max-sm:text-base max-sm:p-0 max-sm:my-8">
+        <p>{descriptionTwo}</p>
+        </div>
+        <div className="py-4 px-3 max-sm:px-0">
+          <div className="flex flex-col gap-3">{documentToReactComponents(content)}</div>
+        </div>
     </div>
   );
 }
