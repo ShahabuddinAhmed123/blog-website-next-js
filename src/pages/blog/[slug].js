@@ -1,5 +1,6 @@
 import { createClient } from "contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Link from "next/link";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -34,7 +35,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function RecepieDetails({ blog }) {
+export default function BLogsDetails({ blog }) {
   console.log(blog);
   const {
     featuredImage,
@@ -46,19 +47,21 @@ export default function RecepieDetails({ blog }) {
     descriptionTwo,
     content
   } = blog.fields;
-  // console.log("content",content)
+
   return (
     <div className=" w-full h-full">
       <div className="w-full flex h-[500px] mx-auto rounded-tl-3xl rounded-br-3xl bg-[#e9e7e7] shadow-xl shadow-stone-400 max-[990px]:flex-col max-[990px]:h-auto">
         <div className="w-1/2 p-10 flex flex-col justify-center text-base rounded-tl-3xl max-[990px]:w-full max-[440px]:p-3 max-sm:text-sm">
           <div className="flex w-full items-center justify-between max-[440px]:flex-col max-[440px]:items-end">
-            <div className="flex items-center gap-3 max-[440px]:w-full max-[440px]: justify-between">
+          <Link href={`/author/${author.fields.slug}`}>
+          <div className="flex items-center gap-3 max-[440px]:w-full max-[440px]: justify-between cursor-pointer underline hover:text-stone-400">
               <img
                 className="h-[30px]"
                 src={author.fields.avatar.fields.file.url}
               />
               <p>{author.fields.name}</p>
             </div>
+            </Link>
             <p>{publishedDate}</p>
           </div>
           <h2 className="text-3xl my-4 max-sm:text-xl">{internalName}</h2>

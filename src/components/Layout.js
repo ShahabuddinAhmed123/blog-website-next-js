@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   <Link href="/">
     <header className="text-center pt-8 pb-6 mb-10  bg-[#2c2a2a] w-screen transform rotate-1 -mt-4 max-sm:pt-6 max-sm:pb-4 max-sm:rotate-0">
             <div className="m-0 flex flex-col text-[#bbbbbb]">
-                <span className="text-3xl">MyBlogs</span>
+                <span className="text-3xl neon-text">MyBlogs</span>
             </div>
     </header>
   </Link>
