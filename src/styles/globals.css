@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
   background: whitesmoke;
@@ -14,10 +14,10 @@ header h1, header h2 {
   margin: 0;
 }
 
-.neon-text {
+.neon-text:hover {
   color: #fff;
   text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
-  animation: glow 3s infinite alternate;
+  animation: glow 1.5s infinite alternate;
 }
 
 @keyframes glow {
