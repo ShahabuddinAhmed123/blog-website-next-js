@@ -1,0 +1,11 @@
+application:
+  name: "nextjs-blog-website"
+  pods:
+    - name: "blog-frontend"
+      image: "us-east1-docker.pkg.dev/capture-by-auditdeploy/nexlayer-mcp/blog-website-next-js-32718cde-blog-frontend:063f7f06-1757801061"
+      path: "/"
+      servicePorts: [3000]
+      vars:
+        NODE_ENV: "production"
+        NEXT_PUBLIC_SITE_URL: "<% URL %>"
+        PORT: "3000"
