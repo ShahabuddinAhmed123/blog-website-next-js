@@ -18,6 +18,7 @@ COPY . .
 RUN rm -rf src/pages/author src/pages/blog
 
 # Create a simple index page that doesn't require Contentful
+
 RUN cat > src/pages/index.js << 'EOF'
 export default function Page() {
   return (
