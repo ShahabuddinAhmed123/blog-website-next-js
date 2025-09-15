@@ -18,20 +18,6 @@ RUN rm -rf src/pages/author src/pages/blog
 
 # Create a simple index page that doesn't require Contentful
 RUN cat > src/pages/index.js << 'EOF'
-export default function Page() {
-  return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-        <div className="p-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Blog Website</h1>
-          <p className="text-gray-600">Welcome to our blog website built with Next.js!</p>
-          <p className="text-gray-600 mt-2">This is a deployment-ready version.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-EOF
 
 # Build the Next.js application
 RUN npm run build
